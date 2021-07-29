@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-function QuestionForm(props) {
+//give this component the props of a callBack function that..
+//A) takes in the argument of formData (state defined in this component) and passes it back to App component
+//B) changes the state of questions in the App component (so QuestionList will rerender with the added Q)
+//C) POSTs the submitted question to the API
+//D) is called onClick of the form button (simultaneous to onSubmit of the <form> tag)
+
+function QuestionForm({onFormSubmit}) {
   const [formData, setFormData] = useState({
     prompt: "",
     answer1: "",
@@ -84,7 +90,7 @@ function QuestionForm(props) {
             <option value="3">{formData.answer4}</option>
           </select>
         </label>
-        <button type="submit">Add Question</button>
+        <button onClick = {() => onFormSubmit(formData)} type="submit">Add Question</button>
       </form>
     </section>
   );
